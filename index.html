@@ -333,12 +333,51 @@ body {
 
 /* ▼▼▼ 用这块代码替换掉你原来的 .message-bubble .content 样式 ▼▼▼ */
 /* 通用内容区样式，为时间戳和字体大小做准备 */
+/* --- 全局设置 --- */
 .message-bubble .content {
-    position: relative;
-    font-size: var(--chat-font-size, 16px);
-    padding: 8px 12px;
-    line-height: 1.5;
-    word-break: break-word; /* 核心修正: 强制长单词或URL换行，防止撑破气泡 */
+  color: #6B5E53;
+  margin-top: 5px; 
+}
+
+/* --- 气泡样式 --- */
+.message-bubble.ai .content,
+.message-bubble.user .content {
+  border-radius: 999px;
+  background: linear-gradient(to bottom, #FAF0D7 0%, #FFFFFF 70%);
+  border: none;
+  box-shadow: 
+    0 3px 6px rgba(135, 120, 100, 0.15),
+    inset 0 2px 3px rgba(255, 255, 255, 0.8),
+    inset 0 -2px 3px rgba(135, 120, 100, 0.1);
+}
+
+/* --- 已读小标签！ --- */
+.message-bubble.ai .content::before,
+.message-bubble.user .content::before {
+  content: "已读";
+  position: absolute;
+  
+  font-size: 10px;
+  font-weight: 600;
+  color: #8C7862;
+  padding: 1px 5px;
+  
+  border-radius: 999px;
+  background: linear-gradient(to bottom, #FAF0D7 0%, #FFFFFF 70%);
+  box-shadow: 
+    0 2px 3px rgba(135, 120, 100, 0.2),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  z-index: 1;
+}
+
+.message-bubble.user .content::before {
+  top: -18px;
+  left: -18px;
+}
+
+.message-bubble.ai .content::before {
+  top: -18px;
+  right: -18px;
 }
 /* ▲▲▲ 替换结束 ▲▲▲ */
 
